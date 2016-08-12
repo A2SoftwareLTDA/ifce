@@ -62,6 +62,14 @@ public class Professor implements IGenericEntity<Professor>{
 	@Getter @Setter
 	private List<Curso> cursosDarAula = new ArrayList<>();
 	
+	public String getLabelCursos(){
+		String cursos = "";
+		for (Curso curso : cursosDarAula) {
+			cursos = cursos.concat(curso.getNome());
+		}
+		return cursos.replaceAll(", $", "");
+	}
+	
 	@Override
 	public boolean isNew() {
 		return this.id == null;
