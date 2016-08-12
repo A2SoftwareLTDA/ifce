@@ -21,17 +21,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.j7ss.core.DAO;
 import com.j7ss.core.DAOException;
 import com.j7ss.core.IGenericEntity;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 
@@ -150,5 +150,9 @@ public class Curso implements IGenericEntity<Curso>{
 	
 	public static List<Curso> findByNomeLike(Departamento departamento, String nome){
 		return dao.findByQuery("SELECT i FROM Curso i WHERE i.departamento = ?1 AND lower(i.nome) like ?2" ,departamento, "%"+nome.toLowerCase()+"%");
+	}
+	
+	public static List<Curso> findByNome(String nome){
+		return dao.findByQuery("SELECT i FROM Curso i WHERE lower(i.nome) = ?1" , nome.toLowerCase());
 	}
 }

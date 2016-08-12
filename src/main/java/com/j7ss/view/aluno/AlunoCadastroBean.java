@@ -130,10 +130,14 @@ public class AlunoCadastroBean implements Serializable {
 	}
 	
 	public Curso getCursoByNome(String nome){
-		if(departamento != null){
+		if(departamento != null && departamento.getCursos() != null){
 			for (Curso curso : departamento.getCursos()) {
 				if(curso.getNome().equals(nome)) return curso;
 			}
+		}else{
+			List<Curso> list = Curso.findByNome(nome);
+			if(list != null && !list.isEmpty())
+				return list.get(0);
 		}
 		return null;
 	}

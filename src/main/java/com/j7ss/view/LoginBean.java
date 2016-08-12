@@ -41,7 +41,7 @@ public class LoginBean implements Serializable{
 	public void login(){	
 		try {
 			List<Usuario> usuarios = Usuario.findByEmailAndSenha(usuario.getEmail(), MD5.md5(usuario.getSenha()));
-			if(usuarios != null && usuarios.size() > 0 ){
+			if(usuarios != null && usuarios.size() > 0){
 				usuario = usuarios.get(0);
 				WebContext.redirect(getHomeLink());
 			}else{

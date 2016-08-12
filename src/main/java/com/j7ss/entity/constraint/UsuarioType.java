@@ -24,7 +24,8 @@ public enum UsuarioType {
 			Page.ADMIN_ALUNO,
 			Page.ADMIN_INSTITUICAO,
 			Page.ADMIN_USUARIO,
-			Page.ADMIN_DOCUMENTO
+			Page.ADMIN_DOCUMENTO,
+			Page.ADMIN_PROFESSOR
 			), 	
 	INSTITUICAO(
 			Page.PERFIL,

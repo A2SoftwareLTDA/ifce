@@ -20,6 +20,7 @@ public class Page {
 	public static final String ADMIN_INSTITUICAO 	= "adminInstituicao.html";
 	public static final String ADMIN_USUARIO 		= "adminUsuario.html";
 	public static final String ADMIN_DOCUMENTO 		= "adminDocumento.html";
+	public static final String ADMIN_PROFESSOR 		= "adminProfessor.html";
 	
 	public static final String INSTITUICAO_HOME 	= "instituicaoHome.html";
 	public static final String INSTITUICAO_ALUNO 	= "instituicaoAluno.html";
@@ -28,5 +29,6 @@ public class Page {
 	
 	public static final String ALUNO_HOME 			= "alunoHome.html";
 	public static final String ALUNO_COMPLETE_CADASTRO = "alunoCompleteCadastro.html";
+	
 			
 }
