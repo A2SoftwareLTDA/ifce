@@ -151,4 +151,9 @@ public class Curso implements IGenericEntity<Curso>{
 	public static List<Curso> findByNomeLike(Departamento departamento, String nome){
 		return dao.findByQuery("SELECT i FROM Curso i WHERE i.departamento = ?1 AND lower(i.nome) like ?2" ,departamento, "%"+nome.toLowerCase()+"%");
 	}
+	
+	public static List<Curso> findAll(){
+		return dao.findByQuery("SELECT c FROM Curso c"); 
+	}
+	
 }
