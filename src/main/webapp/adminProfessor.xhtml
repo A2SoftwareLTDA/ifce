@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout/layoutPrivateBasic.xhtml">
+	<ui:define name="title">IFCE Estágios - Professores</ui:define>
+	
+	<ui:param name="id" value="professor" />
+	<ui:param name="view" value="#{adminProfessorBean}" />
+	<ui:param name="headerIcon" value="fa-book" />
+	<ui:param name="headerTitle" value="Professores" />
+	<ui:param name="headerLink" value="adminProfessor.html" />
+	<ui:param name="formTitle" value="Novo Professor" />
+	<ui:param name="emptyMessage" value="Nenhum professor cadastrado!" />
+	<ui:param name="btnNew" value="true" />
+	<ui:param name="btnBack" value="true" />
+	<ui:param name="btnSave" value="true" />
+	<ui:param name="btnEdit" value="true" />
+	<ui:param name="btnRemove" value="true" />
+	
+	<ui:define name="contentGrid">
+		<p:column headerText="Nome">
+			#{entity.nome}
+		</p:column>
+		<p:column headerText="Qualificação">
+			#{entity.qualificacao}
+		</p:column>
+		<p:column headerText="Idade">
+			#{entity.idade}
+		</p:column>
+	</ui:define>
+	<ui:define name="contentForm">
+		<div class="form-group">
+			<label for="inputNome" class="col-sm-2 control-label"><strong>Nome:</strong></label>
+			<div class="col-sm-8">
+				<p:inputText id="inputNome" value="#{adminProfessorBean.entity.nome}" placeholder="Nome do professor" styleClass="form-control" 
+					required="true" requiredMessage="Item obrigatório!" />
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputNome"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputQualificacao" class="col-sm-2 control-label"><strong>Qualificação:</strong></label>
+			<div class="col-sm-6">
+				<p:inputText id="inputQualificacao" value="#{adminProfessorBean.entity.qualificacao}" placeholder="Qualificação do professor" styleClass="form-control" 
+					required="true" requiredMessage="Item obrigatório!" />
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputQualificacao"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputIdade" class="col-sm-2 control-label"><strong>Idade:</strong></label>
+			<div class="col-sm-6">
+				<p:inputText id="inputIdade" value="#{adminProfessorBean.entity.idade}" placeholder="Idade do professor" styleClass="form-control" 
+					required="true" requiredMessage="Item obrigatório!" />
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputIdade"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputCursos" class="col-sm-2 control-label"><strong>Cursos:</strong></label>
+			<div class="col-sm-6">
+				<!-- Aqui foi utilizado o collectionType para mudar o comportamento do selectManyMenu por conta do sistema não utilizar o padrão OpenEntityManagerInView, 
+					 pois quando essas informações são enviadas ao Bean, o mesmo tenta criar uma nova Collection a partir da coleção atual por reflection com os dados 
+					 submetidos e convertidos no entanto a coleção é um PersistentBag e já não está mais com a transação aberta. -->
+	            <h:selectManyMenu id="inputCursos" value="#{adminProfessorBean.entity.cursosDarAula}" styleClass="form-control" style="height: 120px;"
+	            	converter="#{cursoProfessorConverter}" collectionType="java.util.ArrayList">
+	                <f:selectItems value="#{adminProfessorBean.cursos}" var="item" itemLabel="#{item.nome}" itemValue="#{item}"/>
+	            </h:selectManyMenu>
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputCursos"  />
+			</div>
+		</div>
+		
+	</ui:define>
+</ui:composition>
+</html>
