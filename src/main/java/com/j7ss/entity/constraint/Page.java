@@ -17,6 +17,7 @@ public class Page {
 	
 	public static final String ADMIN_HOME 			= "adminHome.html";
 	public static final String ADMIN_ALUNO 			= "adminAluno.html";
+        public static final String ADMIN_PROFESSOR      = "adminProfessor.html";
 	public static final String ADMIN_INSTITUICAO 	= "adminInstituicao.html";
 	public static final String ADMIN_USUARIO 		= "adminUsuario.html";
 	public static final String ADMIN_DOCUMENTO 		= "adminDocumento.html";

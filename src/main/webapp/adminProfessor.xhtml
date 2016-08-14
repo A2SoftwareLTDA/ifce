@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/layout/layoutPrivateBasic.xhtml">
+
+        <ui:define name="title">IFCE Estágios - Professores</ui:define>
+
+        <ui:param name="id" value="professor" />
+        <ui:param name="view" value="#{adminProfessorBean}" />
+        <ui:param name="headerIcon" value="fa-book" />
+        <ui:param name="headerTitle" value="Professores" />
+        <ui:param name="headerLink" value="adminProfessor.html" />
+        <ui:param name="formTitle" value="Professor" />
+        <ui:param name="emptyMessage" value="Nenhum professor cadastrado!" />
+        <ui:param name="btnNew" value="true" />
+        <ui:param name="btnBack" value="true" />
+        <ui:param name="btnSave" value="true" />
+        <ui:param name="btnEdit" value="true" />
+        <ui:param name="btnRemove" value="true" />
+
+        <!-- Conteudo da Tabela -->
+        <ui:define name="contentGrid">
+            <p:column headerText="Nome">
+                #{entity.nome}
+            </p:column>
+            <p:column headerText="Idade">
+                #{entity.idade}
+            </p:column>
+            <p:column headerText="Qualificação">
+                #{entity.qualificacao}
+            </p:column>
+            <p:column headerText="Cursos">
+                <p:dataList value="#{adminProfessorBean.entity.cursosDarAula}" var="c" emptyMessage="Sem Cursos para Ministrar">
+                    #{c.nome}
+                </p:dataList>
+            </p:column>
+        </ui:define>
+
+        <!-- Formulário -->
+        <ui:define name="contentForm">
+
+            <section class="panel">
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="inputNome" class="col-sm-2 control-label"><strong>Nome:</strong></label>
+                        <div class="col-sm-8">
+                            <p:inputText id="inputNome" value="#{adminProfessorBean.entity.nome}" placeholder="Nome do Professor" styleClass="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputIdade" class="col-sm-2 control-label"><strong>Idade:</strong></label>
+                        <div class="col-sm-2">
+                            <p:inputText id="inputIdade" value="#{adminProfessorBean.entity.idade}" placeholder="Idade" styleClass="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputqualificacao" class="col-sm-2 control-label"><strong>Qualificação:</strong></label>
+                        <div class="col-sm-5">
+                            <p:inputText id="inputQualificacao" value="#{adminProfessorBean.entity.qualificacao}" placeholder="Qualificação do Professor" styleClass="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label for="inputCursos" class="col-sm-2 control-label"><strong>Cursos:</strong></label>
+                        <div>
+                            <h:selectManyCheckbox id="cursosDarAula" value="#{adminProfessorBean.entity.cursosDarAula}" label="Ministrar" collectionType="java.util.ArrayList"
+                                                  converter="#{professorConverter}">
+                                <f:selectItems value="#{adminProfessorBean.cursos}" var="curso" itemValue="#{curso}" itemLabel="#{curso.nome}" />
+                            </h:selectManyCheckbox>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>
