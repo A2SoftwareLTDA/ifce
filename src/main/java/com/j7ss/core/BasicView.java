@@ -52,6 +52,7 @@ public abstract class BasicView<T extends IGenericEntity<T>> implements Serializ
 			onSave();
 		} catch (DAOException e) {
 			onError(e);
+                        throw new RuntimeException(e);
 		}
 		grid();
 	}
